@@ -1,0 +1,44 @@
+.UploadForm {
+  width: 600px;
+  margin: 0px auto;
+  display: flex;
+
+  button {
+    background: white;
+    border: 1px solid black;
+    transition: 0.3s;
+    font-size: 20px;
+    border-radius: 3px;
+    &:hover {
+      color: white;
+      background: #02A364;
+    }
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    margin: 30px auto;
+    input {
+      font-size: 20px;
+      color: white;
+      height: 100%;
+    }
+  
+    span {
+      min-height: 30px;
+      padding-top: 8px;
+      display: flex;
+      justify-content: center;
+      grid-column: span 2;
+      &.neg {
+        color: red;
+      }
+      &.pos {
+        color: #34D27C;
+      }
+    }
+  }
+
+
+}

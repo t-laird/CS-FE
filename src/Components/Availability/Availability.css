@@ -1,0 +1,17 @@
+.Availability tbody tr {
+  display: grid;
+  grid-template-columns: 200px repeat(6, 80px);
+  grid-gap: 15px;
+  border-bottom: 1px solid darkgrey;
+  padding: 10px 0px; }
+  .Availability tbody tr td, .Availability tbody tr th {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center; }
+    .Availability tbody tr td:nth-of-type(1), .Availability tbody tr th:nth-of-type(1) {
+      justify-content: flex-start;
+      text-align: left; }
+  .Availability tbody tr .highlight {
+    background: #02A364;
+    color: white; }

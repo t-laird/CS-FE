@@ -1,0 +1,30 @@
+.App {
+  min-height: 100vh;
+  background: #273847;
+  display: grid;
+  grid-template-rows: 80px 150px auto;
+  header {
+    background-color: #3B5369;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 80px;
+    margin-bottom: 80px;
+    img {
+      height: 40px;
+    }
+    h1 {
+      margin: 0px;
+      color: white;
+    }
+  }
+
+  .showUpload {
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 50px auto;
+    display: block;
+  }
+}

@@ -1,0 +1,45 @@
+.SiteAvailability {
+  padding-top: 40px;
+  background: white; }
+  .SiteAvailability h3 {
+    text-align: center; }
+  .SiteAvailability .availabilityDetails {
+    display: grid;
+    justify-items: center;
+    margin: 0px auto; }
+    .SiteAvailability .availabilityDetails h3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 600px; }
+      .SiteAvailability .availabilityDetails h3 span {
+        padding: 0px 15px;
+        font-size: 30px;
+        color: #02A364; }
+    .SiteAvailability .availabilityDetails form {
+      display: grid;
+      height: 50px;
+      grid-template-columns: 1fr 200px;
+      margin: 0px auto; }
+      .SiteAvailability .availabilityDetails form input {
+        font-size: 20px; }
+        .SiteAvailability .availabilityDetails form input:focus {
+          outline: none; }
+      .SiteAvailability .availabilityDetails form input[type="submit"] {
+        background: white;
+        border: 1px solid black;
+        transition: 0.3s; }
+        .SiteAvailability .availabilityDetails form input[type="submit"]:hover {
+          color: white;
+          background: #02A364; }
+    .SiteAvailability .availabilityDetails span {
+      text-align: center;
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px; }
+      .SiteAvailability .availabilityDetails span span {
+        color: #02A364;
+        padding: 0px 0px 0px 15px;
+        font-size: 200%; }

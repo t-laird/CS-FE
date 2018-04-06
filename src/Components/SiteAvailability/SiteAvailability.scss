@@ -1,0 +1,63 @@
+.SiteAvailability {
+  padding-top: 40px;
+  background: white;
+
+  h3 {
+    text-align: center;
+  }
+
+  .availabilityDetails {
+    display: grid;
+    justify-items: center;
+    margin: 0px auto;
+    h3 {
+      // text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 600px;
+      span {
+        padding: 0px 15px;
+        font-size: 30px;
+        color: #02A364;
+      }
+    }
+    form {
+      display: grid;
+      height: 50px;
+      grid-template-columns: 1fr 200px;
+      margin: 0px auto;
+  
+      input {
+        font-size: 20px;
+        &:focus {
+          outline: none;
+        }
+      }
+  
+      input[type="submit"] {
+        background: white;
+        border: 1px solid black;
+        transition: 0.3s;
+        &:hover {
+          color: white;
+          background: #02A364;
+        }
+      }
+    }
+
+    span {
+      text-align: center;
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      span {
+        color: #02A364;
+        padding: 0px 0px 0px 15px;
+        font-size: 200%;
+      }
+    }
+  }
+}
