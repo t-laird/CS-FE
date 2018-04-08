@@ -3,39 +3,66 @@
   margin: 0px auto;
   display: flex;
 
-  button {
-    background: white;
-    border: 1px solid black;
-    transition: 0.3s;
-    font-size: 20px;
-    border-radius: 3px;
-    &:hover {
-      color: white;
-      background: #02A364;
-    }
+  label {
+    color: white;
   }
 
+
   form {
+    height: 50px;
+    margin: auto auto;
     display: grid;
-    grid-template-columns: 1fr 100px;
-    margin: 30px auto;
-    input {
-      font-size: 20px;
-      color: white;
-      height: 100%;
-    }
-  
+    grid-gap: 5px;
+    grid-template-columns: repeat(5, auto);
+
     span {
+      grid-column: span 5;
       min-height: 30px;
       padding-top: 8px;
       display: flex;
       justify-content: center;
-      grid-column: span 2;
       &.neg {
         color: red;
       }
       &.pos {
         color: #34D27C;
+      }
+    }
+
+    input,
+    label {
+      height: 50px;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: grid;
+      align-items: center;
+    }
+
+    input {
+      font-size: 10px;
+      text-align: center;
+    }
+
+    input[type="date"] {
+      transition: 1s;
+      padding: 0px 0px 0px 10px;
+      &:focus {
+        border: 3px solid #02A364;
+      }
+    }
+
+    input[type="submit"] {
+      width: 200px;
+      background: white;
+      border: 1px solid black;
+      transition: 0.3s;
+      font-size: 20px;
+      border-radius: 3px;
+      &:hover {
+        color: white;
+        background: #02A364;
       }
     }
   }

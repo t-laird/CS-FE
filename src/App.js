@@ -17,10 +17,27 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const testEndpoint = await fetch('/campsites');
-    const data = await testEndpoint.json();
-    console.log(testEndpoint);
-    console.log(data);
+    const fetchCampsites = await fetch('/campsites');
+    const rawCampsites = await fetchCampsites.json();
+
+    const campsites = rawCampsites.reduce((res, campsite) => {
+      res[campsite.id] = {};
+      res[campsite.id].name = campsite.name;
+      res[campsite.id].gaps = {
+        0: true,
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+      };
+      return res;
+    }, {});
+
+    const fetchReservations = await fetch('/reservations');
+    const reservations = await fetchReservations.json();
+
+    this.setState({ campsites, reservations });
 
   }
 
@@ -44,8 +61,9 @@ class App extends Component {
     return campsites;
   }
 
-  generateAvailability = (reservations, campsites, search) => {
-    if (this.state.dataDigested) return;
+  generateAvailability = (search) => {
+    const { campsites, reservations } = this.state;
+    console.log(search);
 
     let campsitesCopy = Object.assign({}, campsites);
 
@@ -65,34 +83,29 @@ class App extends Component {
     });
   }
 
-  updateData = (data) => {
-    const { search, campsites, reservations } = data;
+  updateDates = (startDate, endDate) => {
+    console.log(startDate, endDate);
+    const search = {startDate, endDate};
+    this.setState({ search });
+    this.generateAvailability(search);
 
-    const campsitesToObj = campsites.reduce((res, campsite) => {
-      res[campsite.id] = {};
-      res[campsite.id].name = campsite.name;
-      res[campsite.id].gaps = {
-        0: true,
-        1: true,
-        2: true,
-        3: true,
-        4: true,
-        5: true,
-      };
-      return res;
-    }, {});
 
-    return this.generateAvailability(reservations, campsitesToObj, search);
+    // {
+    //   "search": {
+    //     "startDate": "2016-06-04",
+    //     "endDate": "2016-06-06"
+    //   },
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} alt="Campspot Logo" />
           <h1>Code Challenge</h1>
         </header>
-       <UploadForm updateData={this.updateData}/>
+       <UploadForm updateDates={this.updateDates}/>
        <SiteAvailability 
         reservations={this.state.reservations} 
         campsites={this.state.campsites} 

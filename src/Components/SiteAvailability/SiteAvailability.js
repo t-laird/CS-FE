@@ -22,12 +22,12 @@ class SiteAvailability extends Component {
       isNaN(this.state.gap) || 
       this.state.gap > 6 || 
       this.state.gap < 0 
-    ) ? <span>Input a valid gap size between 0-5 to highlight reservation availability.</span>
+    ) ? <span>Input a gap rule size between 0-5 to highlight reservation availability.</span>
       : <span>Gap Size is <span>{this.state.gap}</span></span>
     
-    if (!reservations.length) {
+    if (!(Object.keys(search).length)) {
       return (
-        <h3>Upload a File to See Availability</h3>
+        <h3>Input Reservation Dates to See Availability</h3>
       );
     } else {
       return (

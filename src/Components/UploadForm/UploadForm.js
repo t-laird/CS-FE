@@ -11,48 +11,27 @@ class UploadForm extends Component {
     };
   }
 
-  badUpload = (prop) => {
-    this.setState({ uploadSuccessful: false, uploadMsg: `Invalid JSON file - Missing ${prop} data.` });
-    setTimeout(() => { this.setState({ uploadMsg: null}) }, 2000);
-  }
-
   invalidUpload = () => {
-    this.setState({ uploadSuccessful: false, uploadMsg: `Please upload a valid JSON file` });
+    this.setState({ uploadSuccessful: false, uploadMsg: `Please enter valid starting and ending dates.` });
     setTimeout(() => { this.setState({ uploadMsg: null}) }, 2000);
   }
 
   successfulUpload = () => {
-    this.setState({ uploadSuccessful: true, uploadMsg: `Successfully uploaded file.` });
+    this.setState({ uploadSuccessful: true, uploadMsg: `Successfully updated dates.` });
     
     setTimeout(() => { this.setState({ showUpload: false, uploadMsg: null}) }, 2000);
   }
 
   handleUpload = (e) => {
     e.preventDefault();
-    const file = this.fileUpload.files;
-    
-    if (!file.length) return;
+    const {startDate, endDate} = this;
 
-    const fileReader = new FileReader();
-
-    fileReader.onload = (e) => {
-      try {
-        const result = JSON.parse(e.target.result);
-        const expectedProps = ['search', 'campsites', 'reservations'];
-        for (const prop in expectedProps) {
-          if (!result[expectedProps[prop]]) {
-            return this.badUpload(expectedProps[prop]);
-          }
-        }
-        this.props.updateData(result);
-        this.successfulUpload();
-       
-      } catch (err) {
-        return this.invalidUpload()
-      }
+    if (!startDate.value || !endDate.value) {
+      return this.invalidUpload();
     }
-
-    fileReader.readAsText(file.item(0));
+    
+    this.successfulUpload();
+    this.props.updateDates(startDate.value, endDate.value);
   }
 
   render() {
@@ -60,16 +39,14 @@ class UploadForm extends Component {
     
     return (
       <div className="UploadForm">
-      { !this.state.showUpload && 
-        <button className="showUpload" onClick={() => {this.setState({showUpload: true})}}>Upload File</button>
-      }
-      { this.state.showUpload && 
-        <form>
-          <input type="file" ref={(input) => this.fileUpload = input} />
-          <button onClick={this.handleUpload}>Upload</button>
+        <form onSubmit={this.handleUpload}>
+          <label>Start Date: </label>
+          <input type="date" ref={input => this.startDate = input}/>
+          <label>End Date: </label>
+          <input type="date" ref={input => this.endDate = input}/>
+          <input type="submit" value="Submit" />
           <span className={statusColor}>{this.state.uploadMsg}</span>
         </form>
-      }
       </div>
     );
   }
